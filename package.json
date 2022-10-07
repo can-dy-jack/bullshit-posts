@@ -1,0 +1,24 @@
+{
+  "name": "bullshit-posts",
+  "version": "0.1.2",
+  "description": "狗屁不通文章",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/can-dy-jack/bullshit-posts.git"
+  },
+  "keywords": [
+    "bullshit",
+    "posts"
+  ],
+  "author": "kart jim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/can-dy-jack/bullshit-posts/issues"
+  },
+  "homepage": "https://github.com/can-dy-jack/bullshit-posts#readme"
+}
