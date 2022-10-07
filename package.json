@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/can-dy-jack/bullshit-posts/issues"
   },
-  "homepage": "https://github.com/can-dy-jack/bullshit-posts#readme"
+  "homepage": "https://github.com/can-dy-jack/bullshit-posts#readme",
+  "dependencies": {
+    "chalk": "^5.1.0",
+    "moment": "^2.29.4"
+  }
 }

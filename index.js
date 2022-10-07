@@ -1,18 +1,32 @@
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
+import chalk from "chalk";
+import moment from "moment";
+import { generateArticle } from "./src/generate.js";
 import { randomPick } from "./src/random.js";
-import { sentence } from "./src/createSentence.js";
 
 const url = import.meta.url;
-const path = resolve(dirname(fileURLToPath(url)), "./data/index.json");
+const __dirname = dirname(fileURLToPath(url));
+const path = resolve(__dirname, "./data/index.json");
 const fileText = readFileSync(path, { 
     encoding: "utf-8"
 })
 const data = JSON.parse(fileText);
-const {famous, bosh_before, bosh, said, conclude, title} = data;
 
-const [pickFamous, pickBoshBefore, pickBosh, pickSaid, pickConclude, pickTile] =  [famous, bosh_before, bosh, said, conclude, title].map(i => randomPick(i));
+function saveFile(data) {
+    const title = randomPick(data.title)()
+    const res = generateArticle(title, data, 1000, 2000);
+    const ans = `${title}\n\n    ${res.join("\n    ")}`;
 
-console.log(sentence(pickFamous, {said: pickSaid, conclude: pickConclude}));
-console.log(sentence(pickBosh, {title: pickTile}));
+    const output_path = resolve(__dirname, "article"),
+        output_file = resolve(output_path, `${moment().format("YYMMDD-HHMMSS-")}${title}.txt`);
+    if(!existsSync(output_path)) {
+        mkdirSync(output_path);
+    }
+    console.log(`文件保存在${chalk.rgb(203, 85, 97).underline(output_file)}`);
+    writeFileSync(output_file, ans);
+}
+
+saveFile(data);
+
