@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
 import chalk from "chalk";
 import moment from "moment";
+import commandLineArgs from 'command-line-args';
 import { generateArticle } from "./src/generate.js";
 import { randomPick } from "./src/random.js";
 
@@ -14,13 +15,15 @@ const fileText = readFileSync(path, {
 })
 const data = JSON.parse(fileText);
 
-function saveFile(data) {
-    const title = randomPick(data.title)()
-    const res = generateArticle(title, data, 1000, 2000);
+function saveFile(data, title, min = 1000, max = 2000) {
+    if(!title) {
+        title = randomPick(data.title)()
+    }
+    const res = generateArticle(title, data, min, max);
     const ans = `${title}\n\n    ${res.join("\n    ")}`;
 
     const output_path = resolve(__dirname, "article"),
-        output_file = resolve(output_path, `${moment().format("YYMMDD-HHMMSS-")}${title}.txt`);
+        output_file = resolve(output_path, `${moment().format("YYMMDD-hhmmss-")}${title}.txt`);
     if(!existsSync(output_path)) {
         mkdirSync(output_path);
     }
@@ -28,5 +31,13 @@ function saveFile(data) {
     writeFileSync(output_file, ans);
 }
 
-saveFile(data);
+// 配置我们的命令行参数
+const optionDefinitions = [
+    {name: 'title', alias: 't', type: String},
+    {name: 'min', type: Number},
+    {name: 'max', type: Number},
+];
+const options = commandLineArgs(optionDefinitions); // 获取命令行的输入
+
+saveFile(data, options.title, options.min, options.max);
 

@@ -23,6 +23,7 @@
   "homepage": "https://github.com/can-dy-jack/bullshit-posts#readme",
   "dependencies": {
     "chalk": "^5.1.0",
+    "command-line-args": "^5.2.1",
     "moment": "^2.29.4"
   }
 }
