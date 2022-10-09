@@ -13,4 +13,3 @@ const fileText = readFileSync(path, {
 const data = JSON.parse(fileText);
 
 saveFile(data, options.title, options.min, options.max);
-
