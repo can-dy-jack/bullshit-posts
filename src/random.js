@@ -1,14 +1,14 @@
 export function randomInt(min, max) {
     // 返回 min 和 max 之间的随机值
     const _rd = Math.random();
-    return Math.floor(min + (max-min)*_rd); // [min,max)
+    return Math.floor(min*(1-_rd) + max*_rd); // [min,max)
 }
 // 获取数组中随机元素
 export function randomPick(arr) {
     let _lastPicked = -1;
     function pickElement() {
         let _rd = randomInt(0, arr.length);
-        while(_lastPicked == _rd) {
+        while(_lastPicked === _rd) {
             _rd = randomInt(0, arr.length);
         }
         _lastPicked = _rd;
