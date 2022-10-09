@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+}
+main {
+  background-color: #fafafa;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+.main-left {
+  width: 300px;
+  box-sizing: border-box;
+  /* padding: 20px; */
+  border-right: 1px solid #eee;
+}
+.main-left-header {
+  background-color: #eee;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: royalblue;
+}
+.main-left-options {
+  margin: 20px;
+}
+.main-left-title {
+  margin: 20px;
+}
+.main-left-title div {
+  text-align: center;
+  margin: 10px 0;
+}
+#title {
+  width: 180px;
+}
+button {
+  cursor: pointer;
+}
+.main-right {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #fff;
+  height: 100%;
+  overflow: auto;
+}
+::selection {
+  background-color: rgba(65, 225, 145, 0.2);
+}
