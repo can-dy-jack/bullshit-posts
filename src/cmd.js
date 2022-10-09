@@ -42,7 +42,7 @@ const optionDefinitions = [
 ];
 const options = commandLineArgs(optionDefinitions); // 获取命令行的输入
 if ("help" in options) {
-    console.log(usage);
-    process.exit();
+  console.log(usage);
+  process.exit();
 }
 export { options };
